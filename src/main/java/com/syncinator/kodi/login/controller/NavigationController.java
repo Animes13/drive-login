@@ -21,92 +21,126 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 public class NavigationController {
-	@NonNull
-	private ApplicationContext context;
-	@NonNull
-	private Cache<Object, Object> cache;
 
-	@GetMapping("/")
-	public String index(final HttpServletRequest request) {
-		request.setAttribute("sourceid", Utils.getSourceId(request));
-		return "index";
-	}
+    @NonNull
+    private ApplicationContext context;
 
-	@RequestMapping("/signin/{pin}")
-	public String signin(
-			@PathVariable final String pin,
-			final Model model,
-			final HttpServletRequest request) {
-		return login(pin, model, request);
-	}
+    @NonNull
+    private Cache<Object, Object> cache;
 
-	@RequestMapping("/authorize")
-	public String login(
-			@RequestParam final String pin,
-			final Model model,
-			final HttpServletRequest request) {
-		final String unambiguousPin = pin.replace('O', '0');
-		final Pin storedPin = (Pin) cache.getIfPresent(unambiguousPin.toLowerCase());
-		if (storedPin != null && storedPin.getOwner().equals(Utils.getRemoteAddress(request))) {
-			final Provider connector = context
-					.getBean(Provider.NAME_PREFIX + storedPin.getProvider(), Provider.class);
-			return "redirect:" + connector.authorize(unambiguousPin);
-		}
-		request.setAttribute("sourceid", Utils.getSourceId(request));
-		model.addAttribute("errorMessage", "error.pin.invalid");
-		return "index";
-	}
+    @GetMapping("/")
+    public String index(final HttpServletRequest request) {
+        request.setAttribute("sourceid", Utils.getSourceId(request));
+        return "index";
+    }
 
-	@RequestMapping("/callback")
-	public String callback(
-			@RequestParam(required=false) final String code,
-			@RequestParam(required=false) final String state,
-			@RequestParam(required=false) final String error,
-			@RequestParam(required=false, name="error_description") final String errorDescription,
-			final Model model) {
-		if (error != null) {
-			model.addAttribute("errorText", error + ": " + errorDescription);
-		} else if (state == null) {
-			model.addAttribute("errorCode", "failure.code.3");
-		} else {
-			final Pin storedPin = (Pin) cache.getIfPresent(state.toLowerCase());
-			if (storedPin != null) {
-				final Provider connector = context
-						.getBean(Provider.NAME_PREFIX + storedPin.getProvider(), Provider.class);
-				final Map<String, Object> tokens = connector.tokens(Provider.GRANT_TYPE_AUTHORIZATION_CODE, code);
-				if (tokens != null) {
-					storedPin.setAccessToken(tokens);
-					return "redirect:auth-success";
-				} else {
-					model.addAttribute("errorCode", "failure.code.2");
-				}
-			} else {
-				model.addAttribute("errorCode", "failure.code.1");
-			}
-		}
-		return "auth-failure";
-	}
+    @RequestMapping("/signin/{pin}")
+    public String signin(
+            @PathVariable final String pin,
+            final Model model,
+            final HttpServletRequest request) {
+        return login(pin, model, request);
+    }
 
-	@GetMapping("/auth-success")
-	public String success() {
-		return "auth-success";
-	}
-	
-	@GetMapping("/failure")
-	public String failure() {
-		return "auth-failure";
-	}
-	
-	@GetMapping("/privacypolicy")
-	public String privacypolicy() {
-		return "privacypolicy";
-	}
+    @RequestMapping("/authorize")
+    public String login(
+            @RequestParam final String pin,
+            final Model model,
+            final HttpServletRequest request) {
 
-	@ExceptionHandler(Exception.class)
-	public String exceptionHandler(
-			final Model model,
-			final Exception e){
-		model.addAttribute("errorText", e.getMessage());
-		return "auth-failure";
-	}
+        final String unambiguousPin = pin.replace('O', '0');
+        final Pin storedPin = (Pin) cache.getIfPresent(unambiguousPin.toLowerCase());
+
+        if (storedPin != null && storedPin.getOwner().equals(Utils.getRemoteAddress(request))) {
+
+            final Provider connector = context.getBean(
+                    Provider.NAME_PREFIX + storedPin.getProvider(),
+                    Provider.class);
+
+            return "redirect:" + connector.authorize(unambiguousPin);
+        }
+
+        request.setAttribute("sourceid", Utils.getSourceId(request));
+        model.addAttribute("errorMessage", "error.pin.invalid");
+
+        return "index";
+    }
+
+    @RequestMapping("/callback")
+    public String callback(
+            @RequestParam(required = false) final String code,
+            @RequestParam(required = false) final String state,
+            @RequestParam(required = false) final String error,
+            @RequestParam(required = false, name = "error_description") final String errorDescription,
+            final Model model) {
+
+        if (error != null) {
+
+            model.addAttribute("errorText", error + ": " + errorDescription);
+
+        } else if (state == null) {
+
+            model.addAttribute("errorCode", "failure.code.3");
+
+        } else {
+
+            final Pin storedPin = (Pin) cache.getIfPresent(state.toLowerCase());
+
+            if (storedPin != null) {
+
+                final Provider connector = context.getBean(
+                        Provider.NAME_PREFIX + storedPin.getProvider(),
+                        Provider.class);
+
+                final Map<String, Object> tokens =
+                        connector.tokens(Provider.GRANT_TYPE_AUTHORIZATION_CODE, code);
+
+                if (tokens != null) {
+
+                    storedPin.setAccessToken(tokens);
+                    return "redirect:auth-success";
+
+                } else {
+
+                    model.addAttribute("errorCode", "failure.code.2");
+                }
+
+            } else {
+
+                model.addAttribute("errorCode", "failure.code.1");
+            }
+        }
+
+        return "auth-failure";
+    }
+
+    @GetMapping("/auth-success")
+    public String success() {
+        return "auth-success";
+    }
+
+    @GetMapping("/failure")
+    public String failure() {
+        return "auth-failure";
+    }
+
+    @GetMapping("/privacypolicy")
+    public String privacypolicy() {
+        return "privacypolicy";
+    }
+
+    @GetMapping("/terms")
+    public String terms() {
+        return "terms";
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String exceptionHandler(
+            final Model model,
+            final Exception e) {
+
+        model.addAttribute("errorText", e.getMessage());
+
+        return "auth-failure";
+    }
 }
