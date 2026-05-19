@@ -5,13 +5,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
 	<meta name="google-site-verification" content="LXJecqW73UwDJ2KkfDMtuKTNM8zejv21CRvNbBbtC_4" />
-
-	<!-- NOVO META ADICIONADO -->
 	<meta name="google-site-verification" content="702C0vVo01TyBrYImtzMoq3QzCZvt6RZ_caDF7HEL-8" />
 
-	<title th:text="#{title}">Authenticate Your Kodi</title>
-	<script type="text/javascript" src="../static/js/jquery-2.1.3.min.js" th:src="@{/js/jquery-2.1.3.min.js}" ></script>
+	<title>Connect your device</title>
+
+	<script type="text/javascript" src="../static/js/jquery-2.1.3.min.js" th:src="@{/js/jquery-2.1.3.min.js}"></script>
 	<link rel="stylesheet" type="text/css" href="../static/css/core.css" th:href="@{/css/core.css}"/>
+
 	<script type="text/javascript">
 		$(function(){
 			$("[name=pin]").focus();
@@ -21,28 +21,68 @@
 <body>
 	<section class='container'>
 		<hgroup>
-			<h1 th:text="#{title}">Authenticate Your Kodi</h1>
+			<h1>Connect your device</h1>
 		</hgroup>
-		<form action="index.html" th:action="@{/authorize}" method="post">
-			<input name="pin" class="input-code" th:placeholder="#{pin.placeholder}" placeholder="Enter code..."/>
+
+		<p style="font-weight: bold;">
+			Enter only the device code shown inside your Kodi app.
+		</p>
+
+		<p>
+			Do not enter your Google, Microsoft, Kodi, email, or account password on this page.
+			This page does not ask for passwords. Account authorization happens only on the official
+			Google or Microsoft website after you continue.
+		</p>
+
+		<form action="index.html" th:action="@{/authorize}" method="post" autocomplete="off">
+			<input
+				name="pin"
+				class="input-code"
+				th:placeholder="#{pin.placeholder}"
+				placeholder="Enter device code..."
+				autocomplete="one-time-code"
+				inputmode="text"
+			/>
+
 			<div class="v-spacer"></div>
+
 			<div th:if="${errorMessage}">
 				<span class="error" th:text="#{${errorMessage}}">Some error happened</span>
 				<div class="v-spacer"></div>
 			</div>
+
 			<div>
-				<button type="submit" class="nav-button" th:text="#{next} + ' &gt;'">Next</button>
+				<button type="submit" class="nav-button">Continue &gt;</button>
 			</div>
 		</form>
+
 		<br/><br/>
-		 <ul>
-		 	<li><b><a th:href="@{/privacypolicy}" href="privacypolicy" th:utext="#{privacy.policy}">Privacy Policy</a></b></li>
-		 	<br/>
-		 	<li th:utext="#{footer.text.2}">This program is not affiliated with or sponsored by any cloud storage service</li>
-		 	<br/>
-		 	<li th:utext="#{footer.text.1}">If you need help...</li>
-		 	<br/>
-		 	<li style="font-weight: bold;" th:utext="'Your source id is: ' + ${sourceid}"></li>
+
+		<ul>
+			<li>
+				<b>
+					<a th:href="@{/privacypolicy}" href="privacypolicy" th:utext="#{privacy.policy}">
+						Privacy Policy
+					</a>
+				</b>
+			</li>
+
+			<br/>
+
+			<li>
+				This service is not affiliated with, endorsed by, or sponsored by Google, Microsoft,
+				OneDrive, Google Drive, Kodi, or any cloud storage provider.
+			</li>
+
+			<br/>
+
+			<li>
+				Use this page only to connect your device using the code displayed in your app.
+			</li>
+
+			<br/>
+
+			<li style="font-weight: bold;" th:utext="'Your source id is: ' + ${sourceid}"></li>
 		</ul>
 	</section>
 
