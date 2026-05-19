@@ -7,106 +7,120 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/core.css" th:href="@{/css/core.css}"/>
 </head>
 <body>
-	<section class='container'>
+	<section class="container">
 		<hgroup>
 			<h1 th:text="#{privacy.policy}">Privacy Policy</h1>
 		</hgroup>
 
 		<p><b>Last Updated:</b> May 19, 2026</p>
 
+		<p style="font-weight: bold;">
+			This website never asks for your Google, Microsoft, Kodi, email, or account password.
+		</p>
+
+		<p>
+			Authentication is performed only through the official authorization pages provided by
+			Google or Microsoft.
+		</p>
+
 		<br/>
 
-		<div>
-			<ul>
-				<li>
-					<b>This website never asks for your Google, Microsoft, Kodi, or email password.</b>
-					Authentication is performed only through the official provider authorization pages.
-				</li>
+		<ul>
+			<li>
+				The add-on stores only your account name, account ID, and access data
+				<b>locally on your Kodi device only</b>.
+				This information is used to display your account as an option in Kodi and to access your drive files.
+			</li>
 
-				<li>
-					The add-on stores only your account name, account ID, and access data
-					<b>locally on your Kodi device only</b>.
-					This is used to display your account as an option in Kodi and to access your drive files.
-				</li>
+			<br/>
 
-				<li>
-					The add-on accesses your file information only from your Kodi device directly to the cloud drive provider.
-				</li>
+			<li>
+				The add-on accesses your file information only from your Kodi device directly to the selected cloud drive provider.
+			</li>
 
-				<li>
-					The add-on uses your file information only to display it in Kodi so you can play videos,
-					play music, or view pictures.
-				</li>
+			<br/>
 
-				<li>
-					The add-on transmits or shares diagnostic information with the developer only if you explicitly agree
-					to it and only when an error happens, for the sole purpose of helping resolve issues.
-					<br/>
-					This information may include technical diagnostic data such as file identifiers, filenames,
-					error messages, and anonymous connection metadata.
-					<br/>
-					Sensitive information such as passwords, access tokens, email addresses, usernames,
-					or personal file contents are never collected.
-					<br/>
-					You can always disable this option in the configuration menu.
-				</li>
+			<li>
+				The add-on uses your file information only to display it in Kodi so you can play videos,
+				play music, or view pictures.
+			</li>
 
-				<li>
-					Each permission scope requested by the add-on has a specific purpose:
-					<br/><br/>
+			<br/>
 
-					<u>OneDrive:</u>
-					<br/>
+			<li>
+				The add-on transmits or shares diagnostic information with the developer only if you explicitly agree
+				to it and only when an error happens, for the sole purpose of helping resolve issues.
+				<br/><br/>
+				This information may include technical diagnostic data such as file identifiers, filenames,
+				error messages, and anonymous connection metadata.
+				<br/><br/>
+				Sensitive information such as passwords, access tokens, email addresses, usernames,
+				or personal file contents are never collected.
+				<br/><br/>
+				You can always disable this option in the configuration menu.
+			</li>
 
-					<table>
-						<tr>
-							<th>Scope</th>
-							<th>Use/Purpose</th>
-						</tr>
-						<tr>
-							<td>files.read.all</td>
-							<td>Access your file information in read-only mode to navigate your files and play them in Kodi.</td>
-						</tr>
-						<tr>
-							<td>sites.read.all</td>
-							<td>Access your site files for business accounts in read-only mode to navigate your files and play them in Kodi.</td>
-						</tr>
-						<tr>
-							<td>profile</td>
-							<td>Access your profile information to display your account as an option in Kodi.</td>
-						</tr>
-					</table>
+			<br/>
 
-					<br/>
+			<li>
+				Each permission scope requested by the add-on has a specific purpose.
+			</li>
+		</ul>
 
-					<u>Google Drive:</u>
+		<br/>
 
-					<table>
-						<tr>
-							<th>Scope</th>
-							<th>Use/Purpose</th>
-						</tr>
-						<tr>
-							<td>https://www.googleapis.com/auth/drive.readonly</td>
-							<td>Access your file information in read-only mode to navigate your files and play them in Kodi.</td>
-						</tr>
-						<tr>
-							<td>https://www.googleapis.com/auth/drive.photos.readonly</td>
-							<td>Access your photos in read-only mode to navigate your photos and display them in Kodi.</td>
-						</tr>
-						<tr>
-							<td>profile</td>
-							<td>Access your profile information to display your account as an option in Kodi.</td>
-						</tr>
-					</table>
-				</li>
+		<h2>OneDrive Permissions</h2>
 
-				<li>
-					This project is not affiliated with, endorsed by, or sponsored by Google, Microsoft,
-					Kodi, OneDrive, Google Drive, Google Photos, or any cloud storage provider.
-				</li>
-			</ul>
-		</div>
+		<table>
+			<tr>
+				<th>Scope</th>
+				<th>Use/Purpose</th>
+			</tr>
+			<tr>
+				<td>files.read.all</td>
+				<td>Access your file information in read-only mode to navigate your files and play them in Kodi.</td>
+			</tr>
+			<tr>
+				<td>sites.read.all</td>
+				<td>Access your site files for business accounts in read-only mode to navigate your files and play them in Kodi.</td>
+			</tr>
+			<tr>
+				<td>profile</td>
+				<td>Access your profile information to display your account as an option in Kodi.</td>
+			</tr>
+		</table>
+
+		<br/>
+
+		<h2>Google Drive Permissions</h2>
+
+		<table>
+			<tr>
+				<th>Scope</th>
+				<th>Use/Purpose</th>
+			</tr>
+			<tr>
+				<td>https://www.googleapis.com/auth/drive.readonly</td>
+				<td>Access your file information in read-only mode to navigate your files and play them in Kodi.</td>
+			</tr>
+			<tr>
+				<td>https://www.googleapis.com/auth/drive.photos.readonly</td>
+				<td>Access your photos in read-only mode to navigate your photos and display them in Kodi.</td>
+			</tr>
+			<tr>
+				<td>profile</td>
+				<td>Access your profile information to display your account as an option in Kodi.</td>
+			</tr>
+		</table>
+
+		<br/>
+
+		<ul>
+			<li>
+				This project is not affiliated with, endorsed by, or sponsored by Google, Microsoft,
+				Kodi, OneDrive, Google Drive, Google Photos, or any cloud storage provider.
+			</li>
+		</ul>
 
 		<br/><br/>
 
