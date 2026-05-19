@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 	<meta charset="utf-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -11,67 +11,113 @@
 		<hgroup>
 			<h1 th:text="#{privacy.policy}">Privacy Policy</h1>
 		</hgroup>
-		
-		<br/><br/>
+
+		<p><b>Last Updated:</b> May 19, 2026</p>
+
+		<br/>
+
 		<div>
 			<ul>
 				<li>
-					The add-on stores only your account name, account id, and the access data <b>in your Kodi device</b>.
-					This is used to display your account as an option menu in Kodi and to access your drive files.</li>
-				<li>The add-on access your files information only from your Kodi device directly to the cloud drive provider.</li>
-				<li>The add-on uses your files information for the purpose of displaying it in Kodi so you can play your video, music or you can view your pictures.</li>
+					<b>This website never asks for your Google, Microsoft, Kodi, or email password.</b>
+					Authentication is performed only through the official provider authorization pages.
+				</li>
+
 				<li>
-					The add-on transmits or shares information only to the developer of this add-on if you explicitly agreed to it and only if an error happened, for the sole purpose of helping to resolve the issues quickly. <br/>
-					This information includes the file id, filename, ip address and never includes sensitive information like access codes, emails or user names. <br/>
+					The add-on stores only your account name, account ID, and access data
+					<b>locally on your Kodi device only</b>.
+					This is used to display your account as an option in Kodi and to access your drive files.
+				</li>
+
+				<li>
+					The add-on accesses your file information only from your Kodi device directly to the cloud drive provider.
+				</li>
+
+				<li>
+					The add-on uses your file information only to display it in Kodi so you can play videos,
+					play music, or view pictures.
+				</li>
+
+				<li>
+					The add-on transmits or shares diagnostic information with the developer only if you explicitly agree
+					to it and only when an error happens, for the sole purpose of helping resolve issues.
+					<br/>
+					This information may include technical diagnostic data such as file identifiers, filenames,
+					error messages, and anonymous connection metadata.
+					<br/>
+					Sensitive information such as passwords, access tokens, email addresses, usernames,
+					or personal file contents are never collected.
+					<br/>
 					You can always disable this option in the configuration menu.
 				</li>
-				<li>Each scope requested by the add-on has an specific use and need:<br/>
+
+				<li>
+					Each permission scope requested by the add-on has a specific purpose:
+					<br/><br/>
+
+					<u>OneDrive:</u>
 					<br/>
-					<u>OneDrive:</u><br/>
+
 					<table>
 						<tr>
 							<th>Scope</th>
-							<th>Use/Need</th>
+							<th>Use/Purpose</th>
 						</tr>
 						<tr>
 							<td>files.read.all</td>
-							<td>Access your file information in Read Only mode to be able to navigate your files and play them in Kodi.</td>
+							<td>Access your file information in read-only mode to navigate your files and play them in Kodi.</td>
 						</tr>
 						<tr>
 							<td>sites.read.all</td>
-							<td>Access your site files (Business accounts) in Read Only mode to be able to navigate your files and play them in Kodi.</td>
+							<td>Access your site files for business accounts in read-only mode to navigate your files and play them in Kodi.</td>
 						</tr>
 						<tr>
 							<td>profile</td>
-							<td>Access your profile information to display your account as an option menu in Kodi.</td>
+							<td>Access your profile information to display your account as an option in Kodi.</td>
 						</tr>
 					</table>
+
 					<br/>
+
 					<u>Google Drive:</u>
+
 					<table>
 						<tr>
 							<th>Scope</th>
-							<th>Use/Need</th>
+							<th>Use/Purpose</th>
 						</tr>
 						<tr>
 							<td>https://www.googleapis.com/auth/drive.readonly</td>
-							<td>Access your file information in Read Only mode to be able to navigate your files and play them in Kodi.</td>
+							<td>Access your file information in read-only mode to navigate your files and play them in Kodi.</td>
 						</tr>
 						<tr>
 							<td>https://www.googleapis.com/auth/drive.photos.readonly</td>
-							<td>Access your photos in Read Only mode to be able to navigate your photos and display them in Kodi.</td>
+							<td>Access your photos in read-only mode to navigate your photos and display them in Kodi.</td>
 						</tr>
 						<tr>
 							<td>profile</td>
-							<td>Access your profile information to display your account as an option menu in Kodi.</td>
+							<td>Access your profile information to display your account as an option in Kodi.</td>
 						</tr>
 					</table>
 				</li>
+
+				<li>
+					This project is not affiliated with, endorsed by, or sponsored by Google, Microsoft,
+					Kodi, OneDrive, Google Drive, Google Photos, or any cloud storage provider.
+				</li>
 			</ul>
 		</div>
+
 		<br/><br/>
+
 		<div>
-			<button type="submit" class="nav-button" th:text="'Back to Home'" th:onclick="'window.location.href=\'' + @{/} + '\''">Next</button>
+			<button
+				type="button"
+				class="nav-button"
+				th:text="'Back to Home'"
+				th:onclick="'window.location.href=\'' + @{/} + '\''">
+				Back to Home
+			</button>
 		</div>
 	</section>
 </body>
