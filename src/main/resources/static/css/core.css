@@ -209,10 +209,11 @@ pre {
 	font-size: 16px;
 }
 
+/* Corrigido: azul mais escuro para passar no contraste */
 .nav-button {
 	font-size: 16px;
 	font-weight: bold;
-	background: #097bed;
+	background: #0057b8;
 	border: 0;
 	border-radius: 3px;
 	color: #ffffff;
@@ -222,11 +223,11 @@ pre {
 
 .nav-button:hover,
 .nav-button:focus {
-	background: #005fbd;
+	background: #004a9f;
 }
 
 .nav-button:active {
-	background: #004f9e;
+	background: #003f88;
 }
 
 .input-code {
